@@ -41,12 +41,17 @@ public class Solution {
         @Override
         public void run()
         {
-            try{
-                drugsController.buy(getRandomDrug(), getRandomCount());
-                Thread.sleep(300);
-            }
-            catch (Exception e){
+            while (!isStopped)
+            {
+                try
+                {
+                    drugsController.buy(getRandomDrug(), getRandomCount());
+                    Thread.sleep(300);
+                }
+                catch (Exception e)
+                {
 
+                }
             }
         }
     }
@@ -59,7 +64,7 @@ public class Solution {
 //            Логика для Person: drugsController должен сделать продажу случайного лекарства (getRandomDrug) в количестве (getRandomCount) и подождать 100 мс
             try{
                 drugsController.sell(getRandomDrug(), getRandomCount());
-                Thread.sleep(100);
+                waitAMoment();
             }
             catch (Exception e){
 
@@ -68,11 +73,11 @@ public class Solution {
         }
     }
 
-    public static synchronized int getRandomCount() {
+    public static int getRandomCount() {
         return (int) (Math.random() * 3) + 1;
     }
 
-    public static synchronized Drug getRandomDrug() {
+    public static Drug getRandomDrug() {
         int index = (int) ((Math.random() * 1000) % (drugsController.allDrugs.size()));
         List<Drug> drugs = new ArrayList<>(drugsController.allDrugs.keySet());
         return drugs.get(index);
