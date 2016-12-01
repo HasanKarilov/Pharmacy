@@ -25,6 +25,7 @@ public class DrugsController {
         if (!allDrugs.containsKey(drug)) {
             System.out.println("Нет в наличии");
         }
+//        Получить значение по ключу
         Integer currentCount = allDrugs.get(drug);
         if (currentCount < count) {
             System.out.println(String.format("%s хочет %s %d шт. В наличии - %d", name, drug.getName(), count, currentCount));
